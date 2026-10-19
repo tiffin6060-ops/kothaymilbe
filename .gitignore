@@ -1,0 +1,22 @@
+# Secrets and settings
+.env
+.env.*
+!.env.example
+
+# Python / Django
+backend/.venv/
+__pycache__/
+*.pyc
+backend/media/
+backend/staticfiles/
+
+# Node / Next.js
+node_modules/
+frontend/.next/
+frontend/out/
+
+# Editors / OS
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store
