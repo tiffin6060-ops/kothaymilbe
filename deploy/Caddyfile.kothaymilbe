@@ -1,0 +1,19 @@
+
+# ---- Kothay Milbe (appended by deploy/server-setup.sh) ----------------------------------
+kothaymilbe.com {
+	reverse_proxy 127.0.0.1:3020
+}
+
+www.kothaymilbe.com {
+	redir https://kothaymilbe.com{uri} permanent
+}
+
+api.kothaymilbe.com {
+	reverse_proxy 127.0.0.1:8020 {
+		# Django trusts X-Client-IP from 127.0.0.1 (normally the Next.js server). Requests arriving
+		# here also come from 127.0.0.1, so overwrite the header with the real visitor address;
+		# otherwise anyone could send their own X-Client-IP and dodge the order rate limit.
+		header_up X-Client-IP {remote_host}
+	}
+}
+# ---- end Kothay Milbe -----------------------------------------------------------------------

@@ -1,0 +1,21 @@
+# Kothay Milbe API: Django + Gunicorn on 127.0.0.1:8020 (installed by deploy/server-setup.sh)
+[Unit]
+Description=Kothay Milbe API (Django + Gunicorn)
+After=network.target postgresql.service
+
+[Service]
+Type=simple
+User=kothaymilbe
+Group=kothaymilbe
+WorkingDirectory=/home/kothaymilbe/kothaymilbe/backend
+EnvironmentFile=/home/kothaymilbe/kothaymilbe/backend/.env
+ExecStart=/home/kothaymilbe/kothaymilbe/backend/.venv/bin/gunicorn config.wsgi --bind 127.0.0.1:8020 --workers 3 --timeout 60
+ExecReload=/bin/kill -s HUP $MAINPID
+Restart=always
+RestartSec=3
+MemoryMax=700M
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

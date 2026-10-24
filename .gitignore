@@ -9,11 +9,15 @@ __pycache__/
 *.pyc
 backend/media/
 backend/staticfiles/
+backend/db.sqlite3
+backend/.cache/
 
 # Node / Next.js
 node_modules/
 frontend/.next/
 frontend/out/
+frontend/next-env.d.ts
+*.tsbuildinfo
 
 # Editors / OS
 .vscode/
